@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 def roman_to_int(roman_string: str):
     if roman_string is None or type(roman_string) != str:
         return 0
@@ -10,7 +9,6 @@ def roman_to_int(roman_string: str):
     for i in range(len(numbers) - 1):
         if numbers[i] >= numbers[i+1]:
             rep += numbers[i]
-
         else:
             rep -= numbers[i]
     return 
