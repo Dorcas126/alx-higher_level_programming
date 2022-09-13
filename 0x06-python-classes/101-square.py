@@ -1,87 +1,89 @@
 #!/usr/bin/python3
+"""Module containing the Square class"""
+
+
 class Square:
-    """ A class that defines a square by its size
-    """
-    def __str__(self):
-        rtn = ""
-
-        if self.size == 0:
-            return rtn
-
-        for i in range(self.position[1]):
-            rtn += "\n"
-
-        for i in range(0, self.size):
-            for k in range(self.position[0]):
-                rtn += " "
-            for j in range(self.size):
-                rtn += "#"
-            if i is not (self.size - 1):
-                rtn += "\n"
-
-        return rtn
-
+    """The Square class"""
     def __init__(self, size=0, position=(0, 0)):
-        """ Method to initialize the square object
+        """Initializing an instance of Square
+        Args:
+            size (int): The size of the Square instance. Default value is 0.
+            position (:obj:'tuple' of int): x, y coordinate offset when
+                printing the square.
         """
         self.size = size
         self.position = position
 
+    def __str__(self):
+        """Returns a string consisting of a square made with hashtags using the
+        'size'. Uses 'position' to offset where the printing should begin. The
+        x, y coordinate in 'position' is the location of the top left corner of
+        the square.
+        Returns:
+            str: A string representing a square made of hashtags.
+        """
+        __my_string = ""
+        if self.__size is not 0:
+            for y in range(self.__position[1]):
+                __my_string += '\n'
+            for i in range(self.__size):
+                for x in range(self.__position[0]):
+                    __my_string += ' '
+                for j in range(self.__size):
+                    __my_string += '#'
+                if i is not self.__size - 1:
+                    __my_string += '\n'
+        return __my_string
+
     @property
     def size(self):
-        """ Method to returns the size value
-        """
+        """int: Value of 'size'"""
         return self.__size
 
     @size.setter
-    def size(self, value):
-        """ Method to set the size value of the square object
-        """
-        if not isinstance(value, int):
+    def size(self, size):
+        if not isinstance(size, int):
             raise TypeError("size must be an integer")
-        if value < 0:
+        if size < 0:
             raise ValueError("size must be >= 0")
-        self.__size = value
+
+        self.__size = size
 
     @property
     def position(self):
-        """ Method that returns the position value
+        """:obj:'tuple' of int: x, y coordinate offset when printing the square.
         """
         return self.__position
 
     @position.setter
-    def position(self, value):
-        """ Method that sets the position value of a square object
-        """
-        if not isinstance(value, tuple):
+    def position(self, position):
+        if (not isinstance(position, tuple) or len(position) is not 2 or
+            not isinstance(position[0], int) or
+                not isinstance(position[1], int) or position[0] < 0 or
+                position[1] < 0):
             raise TypeError("position must be a tuple of 2 positive integers")
-        if len(value) != 2:
-            raise TypeError("position must be a tuple of 2 positive integers")
-        if not isinstance(value[0], int):
-            raise TypeError("position must be a tuple of 2 positive integers")
-        if not isinstance(value[1], int):
-            raise TypeError("position must be a tuple of 2 positive integers")
-        if value[0] < 0 or value[1] < 0:
-            raise TypeError("position must be a tuple of 2 positive integers")
-        self.__position = value
+
+        self.__position = position
 
     def area(self):
-        """ Method that returns the square are of the object
+        """Returns the current square area of the instance
+        Returns:
+            int: Value of 'size'
         """
-        return (self.__size ** 2)
+        return self.__size ** 2
 
     def my_print(self):
-        """ Method that prints a # square according
-        to the size value
-        """
-        if self.size == 0:
-            print()
+        """Prints a square with hashtags using the 'size'. Uses 'position' to
+        offset where the printing should begin. The x, y coordinate in
+        'position' is the location of the top left corner of the square."""
+        if self.__size is not 0:
+            for y in range(self.__position[1]):
+                print()
+            for i in range(self.__size):
+                for x in range(self.__position[0]):
+                    print(" ", end="")
+                for j in range(self.__size):
+                    print("#", end="")
+                print()
         else:
-            for i in range(self.position[1]):
-                print()
-            for i in range(0, self.size):
-                for k in range(self.position[0]):
-                    print(" ", end='')
-                for j in range(self.size):
-                    print("#", end='')
-                print()
+            print()
