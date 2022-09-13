@@ -2,6 +2,25 @@
 class Square:
     """ A class that defines a square by its size
     """
+    def __str__(self):
+        rtn = ""
+
+        if self.size == 0:
+            return rtn
+
+        for i in range(self.position[1]):
+            rtn += "\n"
+
+        for i in range(0, self.size):
+            for k in range(self.position[0]):
+                rtn += " "
+            for j in range(self.size):
+                rtn += "#"
+            if i is not (self.size - 1):
+                rtn += "\n"
+
+        return rtn
+
     def __init__(self, size=0, position=(0, 0)):
         """ Method to initialize the square object
         """

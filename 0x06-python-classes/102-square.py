@@ -2,6 +2,24 @@
 class Square:
     """ A class that defines a square by its size
     """
+    def __eq__(self, other):
+        return self.__size == other.__size
+
+    def __lt__(self, other):
+        return self.__size < other.__size
+
+    def __le__(self, other):
+        return self.__size <= other.__size
+
+    def __ne__(self, other):
+        return self.__size != other.__size
+
+    def __gt__(self, other):
+        return self.__size > other.__size
+
+    def __ge__(self, other):
+        return self.__size >= other.__size
+
     def __init__(self, size=0):
         """ Method to initialize the square object
         """
@@ -33,15 +51,3 @@ class Square:
             raise ValueError("size must be >= 0")
         else:
             self.__size = value
-
-    def my_print(self):
-        """ Method that prints a # square according
-        to the size value
-        """
-        if not self.__size:
-            print()
-        else:
-            for i in range(self.__size):
-                for j in range(self.__size):
-                    print("#", end='')
-                print()
