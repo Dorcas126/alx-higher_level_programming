@@ -1,18 +1,16 @@
 #!/usr/bin/python3
 """
-Write a class Rectangle that defines a rectangle by: (based on 1-rectangle.py)
+This is the "Rectangle"  module.
+
+This module provides a simple Rectangle class with attribute width and height.
+Default values of both attributes are 0.
 """
 
 
 
 class Rectangle:
-    """
-    A class Rectanle that defines a rectangle
-    """
+    """A Rectangle class with attributes  width and height"""
     def __init__(self, width=0, height=0):
-        """
-        Initializes private attribute width and height
-        """
         self.width = width
         self.height = height
 
@@ -20,20 +18,14 @@ class Rectangle:
 
     @property
     def width(self):
-        """
-        width getter
-        """
         return self.__width
 
 
 
     @width.setter
     def width(self, value):
-        """
-        width setter
-        """
-        if not isinstance(value, int):
-            TypeError('width must be an integer')
+        if type(value) is not int:
+            raise TypeError('width must be an integer')
         if value < 0:
             raise ValueError('width must be >= 0')
         self.__width = value
@@ -42,36 +34,14 @@ class Rectangle:
 
     @property
     def height(self):
-        """
-        width getter
-        """
         return self.__height
+
 
 
     @height.setter
     def height(self, value):
-        """
-        width setter
-        """
-        if not isinstance(value, int):
-            TypeError('width must be an integer')
+        if type(value) is not int:
+            raise TypeError('height must be an integer')
         if value < 0:
-            raise ValueError('width must be >= 0')
+            raise ValueError('height must be >= 0')
         self.__height = value
-
-
-
-    def area(self):
-        """
-        Returns a rectangle's area
-        """
-        return self.width * self.height
-
-
-    def perimeter(self):
-        """
-        Returns a rectangle's perimeter
-        """
-        if self.width == 0 or self.height == 0:
-            return 0
-        return (self.width + self.heigh
