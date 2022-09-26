@@ -2,6 +2,7 @@
 """ New class Geometry module """
 
 
+
 class BaseGeometry:
     """ Base Geometry """
 
