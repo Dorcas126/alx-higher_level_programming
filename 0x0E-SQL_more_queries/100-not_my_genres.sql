@@ -1,16 +1,23 @@
-cript that lists genres that not belong to Dexter show
-SELECT tv_genres.name -- Query to get genres that not belong
-FROM tv_genres
-LEFT JOIN
-(
-		SELECT tv_genres.id, tv_genres.name -- Query to get Dexter genres
-			FROM tv_genres
-				JOIN tv_show_genres
-					     ON tv_genres.id = tv_show_genres.genre_id
-						JOIN tv_shows
-							     ON tv_show_genres.show_id = tv_shows.id
-								WHERE tv_shows.title = "Dexter"
-									ORDER BY tv_genres.id
-								) dexter_genres ON dexter_genres.id = tv_genres.id
-								WHERE dexter_genres.id is NULL
-								ORDER BY tv_genres.name;
+-- Lists all genres of the database hbtn_0d_tvshows
+-- not linked to the show Dexter.
+-- Records are sorted by ascending genre name.
+SELECT DISTINCT `name`
+  FROM `tv_genres` AS g
+       INNER JOIN `tv_show_genres` AS s
+       ON g.`id` = s.`genre_id`
+
+
+       INNER JOIN `tv_shows` AS t
+       ON s.`show_id` = t.`id`
+       WHERE g.`name` NOT IN
+             (SELECT `name`
+
+		FROM `tv_genres` AS g
+	              INNER JOIN `tv_show_genres` AS s
+		      ON g.`id` = s.`genre_id`
+		
+		      INNER JOIN `tv_shows` AS t
+  		      ON s.`show_id` = t. `id`
+		      WHERE t.`title` = "Dexter")
+		
+	ORDER BY g.`name`;
