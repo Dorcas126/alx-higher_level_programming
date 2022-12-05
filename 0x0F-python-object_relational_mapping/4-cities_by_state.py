@@ -1,9 +1,13 @@
 #!/usr/bin/python3
-"""Lists all states from the database hbtn_0e_0_usa"""
+"""Lists all cities from the database hbtn_0e_4_usa"""
 
 if __name__ == '__main__':
     from sys import argv
     import MySQLdb as mysql
+
+    if (len(argv) != 4):
+        print('Use: username, password, database name')
+        exit(1)
 
     try:
         db = mysql.connect(host='localhost', port=3306, user=argv[1],
@@ -14,7 +18,10 @@ if __name__ == '__main__':
 
     cursor = db.cursor()
 
-    cursor.execute("SELECT * FROM states ORDER BY id ASC;")
+    cursor.execute("""SELECT c.id, c.name, s.name FROM cities as c
+                      INNER JOIN states as s
+                      ON c.state_id = s.id
+                      ORDER BY c.id ASC;""")
 
     result_query = cursor.fetchall()
 
